@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   BASE
+========================= */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b0b0f;
+  color: white;
+}
+
+img {
+  image-rendering: auto;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+/* =========================
+   FONT – PIXEL
+========================= */
+.pixel-font {
+  font-family: var(--font-pixel), 'Press Start 2P', monospace;
+  letter-spacing: -0.02em;
+}
+
+/* =========================
+   PIXEL EFFECTS
+========================= */
+.pixel-shadow {
+  box-shadow:
+    4px 4px 0 #000,
+    6px 6px 0 rgba(0,0,0,0.5);
+}
+
+.image-rendering-pixelated {
+  image-rendering: pixelated;
+}
+
+/* subtle pixel grid background */
+.bg-pixel {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* =========================
+   WALLET – MAGIC EDEN STYLE
+========================= */
+.wallet-me .wallet-adapter-button {
+  height: 34px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 10px;
+  background: #1a1a1f;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.wallet-me .wallet-adapter-button:hover {
+  background: #222;
+}
+
+.wallet-me .wallet-adapter-button-start-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* =========================
+   WALLET – PIXEL STYLE
+========================= */
+.wallet-pixel .wallet-adapter-button {
+  height: 34px;
+  padding: 0 12px;
+  font-size: 11px;
+
+  background: #22c55e !important;
+  color: #000 !important;
+
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+
+  box-shadow: 3px 3px 0 #000;
+  transition: all 0.12s ease;
+}
+
+.wallet-pixel .wallet-adapter-button:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+.wallet-pixel .wallet-adapter-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.wallet-pixel .wallet-adapter-button-start-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ===== SUBTLE PIXEL ANIMATIONS ===== */
+
+/* soft float (hero image) */
+@keyframes pixel-float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-pixel-float {
+  animation: pixel-float 3.5s ease-in-out infinite;
+}
+
+/* soft glow (hover) */
+.pixel-glow {
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.pixel-glow:hover {
+  box-shadow:
+    0 0 0 2px #000,
+    0 0 12px rgba(34,197,94,0.4);
+  transform: translateY(-1px);
+}
+
+/* NFT card hover pop */
+.pixel-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pixel-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    4px 4px 0 #000,
+    0 0 10px rgba(255,255,255,0.12);
+}
+
+/* ===== GAME PIXEL BACKGROUND ===== */
+.bg-pixel {
+  position: relative;
+  background-color: #0b0b0f;
+  overflow: hidden;
+}
+
+/* pixel grid */
+.bg-pixel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* subtle noise */
+.bg-pixel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* content stays on top */
+.bg-pixel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== CRT SCANLINE EFFECT ===== */
+.crt {
+  position: relative;
+  overflow: hidden;
+}
+
+.crt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  opacity: 0.25;
+  z-index: 2;
+}
+
+/* subtle flicker */
+@keyframes crt-flicker {
+  0% { opacity: 0.23; }
+  50% { opacity: 0.28; }
+  100% { opacity: 0.23; }
+}
+
+.crt::before {
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* ===== ARCADE GREEN GLOW ===== */
+.glow-green {
+  box-shadow:
+    0 0 0 2px #000,
+    0 0 12px rgba(34, 197, 94, 0.35),
+    0 0 24px rgba(34, 197, 94, 0.15);
+}
+
+.text-glow-green {
+  text-shadow:
+    0 0 6px rgba(34, 197, 94, 0.6),
+    0 0 14px rgba(34, 197, 94, 0.35);
+}
+
+/* subtle pulse */
+@keyframes glow-pulse {
+  0% {
+    box-shadow:
+      0 0 0 2px #000,
+      0 0 10px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px #000,
+      0 0 16px rgba(34, 197, 94, 0.5);
+  }
+  100% {
+    box-shadow:
+      0 0 0 2px #000,
+      0 0 10px rgba(34, 197, 94, 0.3);
+  }
+}
+
+.glow-animate {
+  animation: glow-pulse 2.4s ease-in-out infinite;
+}
+
+/* ===== PIXEL PARTICLES BACKGROUND ===== */
+.pixel-particles {
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-particles::before,
+.pixel-particles::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(#22c55e 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 32px 32px, 48px 48px;
+  background-position: 0 0, 24px 24px;
+  animation: pixel-float 18s linear infinite;
+  opacity: 0.25;
+}
+
+.pixel-particles::after {
+  animation-duration: 28s;
+  opacity: 0.5;
+}
+
+@keyframes pixel-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-120px);
+  }
+}
+
+/* ===== PIXEL PARTICLES BACKGROUND ===== */
+.bg-arcade {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-arcade::before,
+.bg-arcade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(#22c55e 1px, transparent 1px),
+    radial-gradient(#ffffff55 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px;
+  animation: moveParticles 40s linear infinite;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.bg-arcade::after {
+  animation-duration: 80s;
+  opacity: 0.15;
+}
+
+@keyframes moveParticles {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 200px 400px, -400px -200px;
+  }
+}
+
