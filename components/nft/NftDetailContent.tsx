@@ -1,6 +1,6 @@
-import { NFT } from '@/lib/nft-data'
+import { NFTItem } from '@/lib/nft-data'
 
-export default function NftDetailContent({ nft }: { nft: NFT }) {
+export default function NftDetailContent({ nft }: { nft: NFTItem }) {
   return (
     <div className="grid md:grid-cols-2 gap-10">
       {/* IMAGE */}
@@ -15,18 +15,31 @@ export default function NftDetailContent({ nft }: { nft: NFT }) {
       {/* INFO */}
       <div>
         <h1 className="text-2xl font-bold mb-2">{nft.name}</h1>
-        <p className="text-white/70 mb-6">{nft.description}</p>
 
-        <div className="grid grid-cols-2 gap-4">
-          {nft.attributes.map((attr) => (
-            <div
-              key={attr.trait_type}
-              className="bg-white/5 rounded-lg p-3 text-sm"
-            >
-              <p className="text-white/50">{attr.trait_type}</p>
-              <p className="font-medium">{attr.value}</p>
-            </div>
-          ))}
+        <p className="text-white/70 mb-6">
+          An old but wise GranpaCat wandering the Solana lands.
+        </p>
+
+        <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="bg-white/5 rounded-lg p-3">
+            <p className="text-white/50">Type</p>
+            <p className="font-medium">GranpaCat</p>
+          </div>
+
+          <div className="bg-white/5 rounded-lg p-3">
+            <p className="text-white/50">Chain</p>
+            <p className="font-medium">Solana</p>
+          </div>
+
+          <div className="bg-white/5 rounded-lg p-3">
+            <p className="text-white/50">Edition</p>
+            <p className="font-medium">#{nft.id}</p>
+          </div>
+
+          <div className="bg-white/5 rounded-lg p-3">
+            <p className="text-white/50">Status</p>
+            <p className="font-medium">Unlisted</p>
+          </div>
         </div>
 
         <div className="mt-8 bg-white/5 rounded-lg p-4 text-sm">
@@ -38,4 +51,3 @@ export default function NftDetailContent({ nft }: { nft: NFT }) {
     </div>
   )
 }
-

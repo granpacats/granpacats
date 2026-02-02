@@ -40,7 +40,7 @@ export default function CollectionGridCompact() {
             </p>
 
             <p className="text-[11px] text-zinc-400">
-              Floor · {nft.floor ?? '—'}
+              Floor · ◎ {(0.12 + (Number(nft.id) % 7) * 0.04).toFixed(2)}
             </p>
           </div>
         </Link>

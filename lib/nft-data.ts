@@ -4,7 +4,7 @@ export type NFTItem = {
   image: string
 }
 
-export const NFT_LIST: NFTItem[] = Array.from({ length: 45 }).map((_, i) => {
+export const NFT_LIST: NFTItem[] = Array.from({ length: 64 }).map((_, i) => {
   const id = (i + 1).toString()
 
   return {

@@ -8,22 +8,24 @@ type PageProps = {
 
 export default async function NFTDetailPage({ params }: PageProps) {
   const { id } = await params
-  const nft = NFT_LIST.find((n) => n.id === id)
 
+  const nft = NFT_LIST.find((n) => n.id === id)
   if (!nft) return notFound()
 
-  // 🎮 FAKE RPG STATS (AMAN & KONSISTEN)
+  /* 🎮 FAKE RPG STATS (deterministic) */
   const stats = {
-    hp: 60 + Number(id) * 3 % 40,
-    atk: 40 + Number(id) * 5 % 60,
-    def: 30 + Number(id) * 7 % 50,
-    luck: 10 + Number(id) * 11 % 90,
+    hp: 60 + (Number(id) * 3) % 40,
+    atk: 40 + (Number(id) * 5) % 60,
+    def: 30 + (Number(id) * 7) % 50,
+    luck: 10 + (Number(id) * 11) % 90,
   }
 
   const rarity =
-    stats.luck > 70 ? 'Legendary'
-    : stats.luck > 45 ? 'Rare'
-    : 'Common'
+    stats.luck > 70
+      ? 'Legendary'
+      : stats.luck > 45
+      ? 'Rare'
+      : 'Common'
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-10 pixel-font">
@@ -59,7 +61,10 @@ export default async function NFTDetailPage({ params }: PageProps) {
           <img
             src={nft.image}
             alt={nft.name}
-            className="w-full aspect-square object-cover"
+            className="
+              w-full aspect-square object-cover
+              image-rendering-pixelated
+            "
           />
         </div>
 
@@ -74,12 +79,14 @@ export default async function NFTDetailPage({ params }: PageProps) {
           <div
             className={`
               inline-block px-3 py-1 border-2
-              ${rarity === 'Legendary'
-                ? 'bg-yellow-400 text-black border-black'
-                : rarity === 'Rare'
-                ? 'bg-blue-400 text-black border-black'
-                : 'bg-zinc-700 text-white border-black'
+              ${
+                rarity === 'Legendary'
+                  ? 'bg-yellow-400 text-black'
+                  : rarity === 'Rare'
+                  ? 'bg-blue-400 text-black'
+                  : 'bg-zinc-700 text-white'
               }
+              border-black
             `}
           >
             {rarity}
@@ -93,12 +100,10 @@ export default async function NFTDetailPage({ params }: PageProps) {
 
           {/* STATS */}
           <div className="space-y-3 mt-4">
-
             <Stat label="HP" value={stats.hp} max={100} />
             <Stat label="ATK" value={stats.atk} max={100} />
             <Stat label="DEF" value={stats.def} max={100} />
             <Stat label="LUCK" value={stats.luck} max={100} />
-
           </div>
 
           {/* META */}
@@ -130,7 +135,7 @@ export default async function NFTDetailPage({ params }: PageProps) {
 }
 
 /* ===================== */
-/* 🎮 STAT COMPONENT */
+/* 🎮 STAT BAR COMPONENT */
 /* ===================== */
 function Stat({
   label,

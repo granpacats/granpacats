@@ -1,6 +1,13 @@
 import Link from 'next/link'
+import { NFTItem } from '@/lib/nft-data' // ✅ FIX INI
 
-export default function NFTCard({ nft }: { nft: any }) {
+export default function NFTCard({
+  nft,
+  small = false,
+}: {
+  nft: NFTItem
+  small?: boolean
+}) {
   return (
     <Link href={`/nft/${nft.id}`} className="group">
       <div
@@ -42,12 +49,7 @@ export default function NFTCard({ nft }: { nft: any }) {
 
         {/* INFO */}
         <div className="p-2">
-          <p
-            className="
-              pixel-font text-[10px]
-              truncate
-            "
-          >
+          <p className="pixel-font text-[10px] truncate">
             {nft.name}
           </p>
 

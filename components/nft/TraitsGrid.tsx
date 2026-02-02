@@ -1,15 +1,24 @@
-import type { Trait } from '@/lib/nft-data'
+export type SimpleTrait = {
+  trait_type: string
+  value: string
+}
 
-export default function TraitsGrid({ traits }: { traits: Trait[] }) {
+export default function TraitsGrid({
+  traits,
+}: {
+  traits: SimpleTrait[]
+}) {
+  if (!traits || traits.length === 0) return null
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-      {traits.map((t, i) => (
+    <div className="grid grid-cols-2 gap-3">
+      {traits.map((trait) => (
         <div
-          key={i}
-          className="rounded-xl border border-white/10 bg-white/5 p-3 hover:bg-white/10 transition"
+          key={trait.trait_type}
+          className="bg-white/5 rounded-lg p-3 text-sm"
         >
-          <div className="text-xs text-zinc-400">{t.trait_type}</div>
-          <div className="font-medium">{t.value}</div>
+          <p className="text-white/50">{trait.trait_type}</p>
+          <p className="font-medium">{trait.value}</p>
         </div>
       ))}
     </div>
